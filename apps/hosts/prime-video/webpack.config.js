@@ -38,6 +38,8 @@ module.exports = {
       // For hosts (please adjust)
       remotes: {
         profile: 'http://localhost:4204/remoteEntry.js',
+        home: 'http://localhost:5201/remoteEntry.js',
+        movie: 'http://localhost:5202/remoteEntry.js',
       },
 
       shared: share({

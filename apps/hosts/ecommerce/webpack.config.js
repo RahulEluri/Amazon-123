@@ -10,7 +10,7 @@ sharedMappings.register(path.join(__dirname, '../../../tsconfig.base.json'), [
 
 module.exports = {
   output: {
-    uniqueName: 'home',
+    uniqueName: 'ecommerce',
     publicPath: 'auto',
   },
   optimization: {
@@ -29,24 +29,19 @@ module.exports = {
       library: { type: 'module' },
 
       // For remotes (please adjust)
-      name: 'home',
-      filename: 'remoteEntry.js',
-      exposes: {
-        './homeModule':
-          './apps/remotes/home/src/app/home-page/home-page.module.ts',
-      },
+      // name: "ecommerce",
+      // filename: "remoteEntry.js",
+      // exposes: {
+      //     './Component': './apps/hosts/ecommerce/src/app/app.component.ts',
+      // },
 
       // For hosts (please adjust)
-      // remotes: {
-      //     "eCommerce": "http://localhost:5200/remoteEntry.js",
-      //     "primeVideo": "http://localhost:4200/remoteEntry.js",
-      //     "movie": "http://localhost:4200/remoteEntry.js",
-      //     "orders": "http://localhost:4201/remoteEntry.js",
-      //     "payments": "http://localhost:4203/remoteEntry.js",
-      //     "products": "http://localhost:4202/remoteEntry.js",
-      //     "profile": "http://localhost:4204/remoteEntry.js",
-
-      // },
+      remotes: {
+        orders: 'http://localhost:4201/remoteEntry.js',
+        products: 'http://localhost:4202/remoteEntry.js',
+        payments: 'http://localhost:4203/remoteEntry.js',
+        profile: 'http://localhost:4204/remoteEntry.js',
+      },
 
       shared: share({
         '@angular/core': {

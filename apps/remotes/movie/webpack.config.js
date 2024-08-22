@@ -1,62 +1,78 @@
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-const mf = require("@angular-architects/module-federation/webpack");
-const path = require("path");
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const mf = require('@angular-architects/module-federation/webpack');
+const path = require('path');
 const share = mf.share;
 
 const sharedMappings = new mf.SharedMappings();
-sharedMappings.register(
-  path.join(__dirname, '../../../tsconfig.base.json'),
-  [/* mapped paths to share */]);
+sharedMappings.register(path.join(__dirname, '../../../tsconfig.base.json'), [
+  /* mapped paths to share */
+]);
 
 module.exports = {
   output: {
-    uniqueName: "movie",
-    publicPath: "auto"
+    uniqueName: 'movie',
+    publicPath: 'auto',
   },
   optimization: {
-    runtimeChunk: false
+    runtimeChunk: false,
   },
   resolve: {
     alias: {
       ...sharedMappings.getAliases(),
-    }
+    },
   },
   experiments: {
-    outputModule: true
+    outputModule: true,
   },
   plugins: [
     new ModuleFederationPlugin({
-        library: { type: "module" },
+      library: { type: 'module' },
 
-        // For remotes (please adjust)
-        // name: "movie",
-        // filename: "remoteEntry.js",
-        // exposes: {
-        //     './Component': './apps/remotes/movie/src/app/app.component.ts',
-        // },
+      // For remotes (please adjust)
+      name: 'movie',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './movieModule':
+          './apps/remotes/movie/src/app/movie-page/movie-page.module.ts',
+      },
 
-        // For hosts (please adjust)
-        // remotes: {
-        //     "eCommerce": "http://localhost:5200/remoteEntry.js",
-        //     "primeVideo": "http://localhost:4200/remoteEntry.js",
-        //     "home": "http://localhost:5201/remoteEntry.js",
-        //     "orders": "http://localhost:4201/remoteEntry.js",
-        //     "payments": "http://localhost:4203/remoteEntry.js",
-        //     "products": "http://localhost:4202/remoteEntry.js",
-        //     "profile": "http://localhost:4204/remoteEntry.js",
+      // For hosts (please adjust)
+      // remotes: {
+      //     "eCommerce": "http://localhost:5200/remoteEntry.js",
+      //     "primeVideo": "http://localhost:4200/remoteEntry.js",
+      //     "home": "http://localhost:5201/remoteEntry.js",
+      //     "orders": "http://localhost:4201/remoteEntry.js",
+      //     "payments": "http://localhost:4203/remoteEntry.js",
+      //     "products": "http://localhost:4202/remoteEntry.js",
+      //     "profile": "http://localhost:4204/remoteEntry.js",
 
-        // },
+      // },
 
-        shared: share({
-          "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-          "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-          "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-          "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+      shared: share({
+        '@angular/core': {
+          singleton: true,
+          strictVersion: true,
+          requiredVersion: 'auto',
+        },
+        '@angular/common': {
+          singleton: true,
+          strictVersion: true,
+          requiredVersion: 'auto',
+        },
+        '@angular/common/http': {
+          singleton: true,
+          strictVersion: true,
+          requiredVersion: 'auto',
+        },
+        '@angular/router': {
+          singleton: true,
+          strictVersion: true,
+          requiredVersion: 'auto',
+        },
 
-          ...sharedMappings.getDescriptors()
-        })
-
+        ...sharedMappings.getDescriptors(),
+      }),
     }),
-    sharedMappings.getPlugin()
+    sharedMappings.getPlugin(),
   ],
 };
