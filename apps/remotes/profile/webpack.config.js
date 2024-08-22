@@ -32,7 +32,8 @@ module.exports = {
       name: 'profile',
       filename: 'remoteEntry.js',
       exposes: {
-        './Component': './apps/remotes/profile/src/app/app.component.ts',
+        './ProfileModule':
+          './apps/remotes/profile/src/app/wish-list/wish-list.module.ts',
       },
 
       // For hosts (please adjust)

@@ -38,9 +38,9 @@ module.exports = {
       // For hosts (please adjust)
       remotes: {
         orders: 'http://localhost:4201/remoteEntry.js',
-        payments: 'http://localhost:4202/remoteEntry.js',
-        products: 'http://localhost:4203/remoteEntry.js',
-        profile: 'http://localhost:6000/remoteEntry.js',
+        products: 'http://localhost:4202/remoteEntry.js',
+        payments: 'http://localhost:4203/remoteEntry.js',
+        profile: 'http://localhost:4204/remoteEntry.js',
       },
 
       shared: share({

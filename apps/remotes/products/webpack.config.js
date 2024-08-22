@@ -32,7 +32,8 @@ module.exports = {
       name: 'products',
       filename: 'remoteEntry.js',
       exposes: {
-        './Component': './apps/remotes/products/src/app/app.component.ts',
+        './ProductModule':
+          './apps/remotes/products/src/app/product-list/product-list.module.ts',
       },
 
       // For hosts (please adjust)
