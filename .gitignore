@@ -42,3 +42,4 @@ Thumbs.db
 .nx/workspace-data
 
 .angular
+apps/e-commerce/tsconfig.app.json
